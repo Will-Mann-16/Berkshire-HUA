@@ -1,9 +1,19 @@
-*{
+* {
     box-sizing: border-box;
     font-family: sans-serif;
     margin: 0;
 }
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    display: inline-block;
+}
+
+
 /*Mobile*/
+
 [class*="col-"] {
     float: left;
     padding: 15px;
@@ -16,18 +26,20 @@
     display: table;
 }
 
-.container{
+.container {
     width: 100%;
     float: none;
     padding: 15px;
 }
-.header{
+
+.header {
     text-align: center;
     margin-top: 0.5em;
 }
+
 @media(min-width: 768px) {
     /*Desktop*/
-    .container{
+    .container {
         width: 70%;
         margin-left: 15%;
         margin-right: 15%;

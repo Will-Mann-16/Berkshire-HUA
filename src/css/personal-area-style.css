@@ -1,0 +1,21 @@
+.calender {
+    width: 100%;
+}
+
+.calender .active {
+    background-color: blue;
+    color: white;
+}
+
+.card-form label {
+    float: left;
+    font-weight: bolder;
+}
+
+.card-form input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+}

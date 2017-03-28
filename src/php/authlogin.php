@@ -15,7 +15,6 @@
             echo "Correct Login";
         }else{
             echo "Incorrect Password";
-            echo $row[0]["Password"];
         }
     }
 ?>

@@ -1,16 +1,20 @@
 <nav class="topnav">
-    <a href="index.php">Home</a>
-    <a href="about.php">About</a>
-    <a href="personalarea.php">Personal Area</a>
+    <a class="topnav-links" href="index.php">Home</a>
+    <a class="topnav-links" href="about.php">About</a>
+    <a class="topnav-links" href="personalarea.php">Personal Area</a>
     <?php
     if(!isset($_SESSION)){
         session_start();
     }
     if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]){
         $name = htmlspecialchars_decode($_SESSION["user_data"]["Firstname"].' '.$_SESSION["user_data"]["Surname"]);
-        echo '<a class="align-right">Welcome back, '.$name.'</a>';
+        echo '<div class="dropdown align-right"><a class="dropbtn topnav-links">Welcome back, '.$name.'</a>
+        <div class="dropdown-content">
+        <a href="logout.php">Logout</a>
+        </div>
+        </div>';
     }else{
-        echo '<a class="login-open align-right">Login</a>';
+        echo '<a class="login-open align-right topnav-links">Login</a>';
     }
 
     ?>
@@ -28,16 +32,22 @@
     function toggleNavbar() {
         if (!toggled) {
             $(".animated-icon").toggleClass("icon-change");
-            $(".topnav a").css({
+            $(".topnav .topnav-links").css({
                 "display": "block",
                 "float": "none",
                 "text-align": "left"
+            });
+            $(".topnav .dropbtn").css({
+              "display": "inline-block"
             });
             toggled = true;
         } else {
             $(".animated-icon").toggleClass("icon-change");
             $(".topnav a:not(:first-child)").css({
-                "display": "none",
+                "display": "none"
+            });
+            $(".topnav .dropbtn").css({
+              "display": "none"
             });
             toggled = false;
         }

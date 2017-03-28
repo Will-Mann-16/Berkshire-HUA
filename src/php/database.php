@@ -4,11 +4,11 @@
 
         public function connect(){
             if(!isset(self::$connection)){
-                $config = parse_ini_file('../../config/config.ini');
-                self::$connection = new mysqli('localhost', $config['username'], $config['password'], $config['dbname']);
+                $config = parse_ini_file('../../config/config.ini', true);
+                self::$connection = new mysqli('localhost', $config['database']['username'], $config['database']['password'], $config['database']['dbname']);
             }
             if(self::$connection === false){
-                
+
              }
             return self::$connection;
         }
@@ -36,7 +36,7 @@
             $formats .= "`".$key.'`, ';
             $values .= '"'.$value.'", ';
         }
-        
+
         $formats = rtrim($formats, ',').')';
         $values = rtrim($values, ',').')';
         $this->query('INSERT INTO `'.$table.'` '.$formats.' VALUES '.$values);
@@ -46,7 +46,7 @@
         foreach($data as $key => $value){
             $values .= '`'.$key.'`="'.$value.'", ';
         }
-        
+
         $values = rtrim($values, ',');
         $this->query('UPDATE `'.$table.'` SET '.$values.' WHERE '.$identifier);
     }

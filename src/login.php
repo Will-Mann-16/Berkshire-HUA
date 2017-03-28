@@ -12,6 +12,7 @@
         <div class="modal-container" style="background-color:#f1f1f1">
             <button type="button" class="cancelbtn" onclick="closeLogin();">Cancel</button>
             <button class="submitbutton" type="button" id="login-button">Login</button>
+            <span class="incorrectpass"><strong>You have entered the incorrect login details.</strong> Please try again.</span>
             <span class="psw"> <a href="javascript:void(0)" onclick="openForgotPassword();">Forgot password?</a></span>
         </div>
     </form>
@@ -58,24 +59,31 @@
     function validateLogin(){
         var email = $("#login-form input[name=email]");
         var password = $("#login-form input[name=password]");
+        var correctColour = '#00FF00';
+        var incorrectColour = '#FF0000';
         if(!email.val() || !password.val()){
-            $("#login-form input").removeClass("alert-incomplete");
-            var emailClass = !email.val() ? "alert-incomplete" : "";
-            var passwordClass = !password.val() ? "alert-incomplete" : "";
-            email.addClass(emailClass);
-            password.addClass(passwordClass);
+            var emailClass = !email.val() ? incorrectColour : correctColour;
+            var passwordClass = !password.val() ? incorrectColour : correctColour;
+            email.css("background-color",emailClass);
+            password.css("background-color", passwordClass);
         }else{
             $.ajax({
                 url: "php/authlogin.php",
                 method: "post",
                 data: {email: email.val(), password: password.val()},
                 success: function(callback){
-                    if(callback === "Correct Login"){
-                        closeLogin();
-                        //window.location.reload();
-                    }else{
-                        console.log(callback);
-                    }
+                  switch(callback){
+                    case "Correct Login":
+                      closeLogin();
+                      //window.location.reload();
+                      break;
+                    default:
+                      email.css("background-color", incorrectColour);
+                      password.css("background-color", incorrectColour);
+                      $(".incorrect-pass").css("visibility", "visible");
+                      break;
+                  }
+
                 }
 
             })
