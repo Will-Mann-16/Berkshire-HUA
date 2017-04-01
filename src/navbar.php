@@ -5,6 +5,7 @@
     <?php
     if(!isset($_SESSION)){
         session_start();
+        include_once "php/testcookie.php";  
     }
     if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]){
         $name = htmlspecialchars_decode($_SESSION["user_data"]["Firstname"].' '.$_SESSION["user_data"]["Surname"]);

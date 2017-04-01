@@ -14,6 +14,9 @@
     <div class="container">
         <h1 class="header">Berkshire HUA</h1>
         <p>Recent News</p>
+        <?php
+          
+        ?>
     </div>
 </body>
 

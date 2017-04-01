@@ -11,6 +11,33 @@
     display: inline-block;
 }
 
+.button {
+    padding: 1em;
+    background: grey;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 0.25em;
+}
+
+.flex-coloumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 
 /*Mobile*/
 
@@ -79,5 +106,9 @@
     }
     .col-12 {
         width: 100%;
+    }
+    .card {
+        margin: 0.5em 0;
+        padding: 1em;
     }
 }

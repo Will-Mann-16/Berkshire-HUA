@@ -7,12 +7,12 @@
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <input type="checkbox" checked="checked"> Remember me?
+            <input type="checkbox" checked="checked" name="remember"> Remember me?
         </div>
         <div class="modal-container" style="background-color:#f1f1f1">
             <button type="button" class="cancelbtn" onclick="closeLogin();">Cancel</button>
             <button class="submitbutton" type="button" id="login-button">Login</button>
-            <span class="incorrectpass"><strong>You have entered the incorrect login details.</strong> Please try again.</span>
+            <span class="incorrect-pass"><strong>You have entered the incorrect login details.</strong> Please try again.</span>
             <span class="psw"> <a href="javascript:void(0)" onclick="openForgotPassword();">Forgot password?</a></span>
         </div>
     </form>
@@ -70,12 +70,15 @@
             $.ajax({
                 url: "php/authlogin.php",
                 method: "post",
-                data: {email: email.val(), password: password.val()},
+                data: {email: email.val(), password: password.val(), remember: $("#login-form input[name=remember]").is(":checked")},
                 success: function(callback){
                   switch(callback){
-                    case "Correct Login":
+                    case "Correct Login - Admin":
+                      window.location.href = "adminarea.php";
                       closeLogin();
-                      //window.location.reload();
+                    case "Correct Login - User":
+                      window.location.href = "personalarea.php";
+                      closeLogin();
                       break;
                     default:
                       email.css("background-color", incorrectColour);
